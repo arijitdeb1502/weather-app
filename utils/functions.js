@@ -17,9 +17,9 @@ const forecast = (latitude,longitude,callback)=>{
             const summary=response.body.daily.data[0].summary;
         
             callback(undefined,{
-                temperature: temperature,
-                precipProbability: precipProbability,
-                summary:summary
+                temperature,
+                precipProbability,
+                summary
             });
         }
         
@@ -44,7 +44,7 @@ const geocode = (location,callback)=>{
         else{
             const latitude=response.body.features[0].center[1];
             const longitude=response.body.features[0].center[0];   
-            callback(undefined,{location: location,latitude: latitude,longitude: longitude});
+            callback(undefined,{location,latitude,longitude});
         }
     
     })

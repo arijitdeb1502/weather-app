@@ -7,17 +7,16 @@ if(!address){
     console.log('Please provide an address!!');
 }else{
 
-    weather.geocode(address,(error,data)=>{
+    weather.geocode(address,(error,{location,latitude,longitude})=>{
     
         if(error){
             console.log(error);
         }else{
-            weather.forecast(data.latitude,data.longitude,(error,forecastData)=>{
+            weather.forecast(latitude,longitude,(error,{temperature,precipProbability,summary})=>{
                 if(error){
                     console.log(error);
                 }else{
-                    console.log(data.location);
-                    console.log(forecastData);
+                    console.log({location,temperature,precipProbability,summary});
                 }
             })
         }
