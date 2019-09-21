@@ -1,6 +1,6 @@
 const request=require('request');
 
-const getWeather = (latitude,longitude,callback)=>{
+const forecast = (latitude,longitude,callback)=>{
     const url=`https://api.darksky.net/forecast/e6fa205e2cebd31363b5b65345d4d489/${latitude},${longitude}?units=si`;
 
     request({ url: url , json: true},(error,response)=>{
@@ -44,7 +44,7 @@ const geocode = (location,callback)=>{
         else{
             const latitude=response.body.features[0].center[1];
             const longitude=response.body.features[0].center[0];   
-            callback(undefined,{latitude: latitude,longitude: longitude});
+            callback(undefined,{location: location,latitude: latitude,longitude: longitude});
         }
     
     })
@@ -53,6 +53,6 @@ const geocode = (location,callback)=>{
 
 
 module.exports = {
-    getWeather: getWeather,
+    forecast: forecast,
     geocode: geocode
 }
